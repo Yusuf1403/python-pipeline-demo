@@ -1,4 +1,4 @@
-name: build
+name: Python CI/CD Pipeline
 
 on: [push, pull_request]
 
@@ -8,10 +8,10 @@ jobs:
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: '3.9'
 
@@ -25,5 +25,6 @@ jobs:
         pytest
 
     - name: Deploy Stage
+      if: success()   # <-- Very Important: Only run if previous steps succeeded
       run: |
         echo "Deploying Application..."
