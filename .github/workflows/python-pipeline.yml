@@ -1,10 +1,6 @@
-name: Python CI/CD Pipeline
+name: build
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -12,10 +8,10 @@ jobs:
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v2
       with:
         python-version: '3.9'
 
@@ -30,5 +26,4 @@ jobs:
 
     - name: Deploy Stage
       run: |
-        echo "Deploying Application to Production Environment..."
-        echo "Deployment Successful!"
+        echo "Deploying Application..."
